@@ -3,7 +3,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 console.log(process.env.CONNECTIONSTRING)
-mongoose.connect(process.env.CONNECTIONSTRING, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.CONNECTIONSTRING, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
   .then(() => {
     app.emit('pronto');
   })
@@ -33,6 +33,7 @@ const sessionOptions = session({
     httpOnly: true
   }
 });
+
 app.use(sessionOptions);
 app.use(flash());
 

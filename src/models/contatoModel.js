@@ -63,4 +63,20 @@ Contato.prototype.edit = async function(id) {
   this.contato = await ContatoModel.findByIdAndUpdate(id, this.body, { new: true });
 }
 
+// static methods
+Contato.buscaPorId = async function(id) {
+  if(typeof id !== 'string') return;
+  return ContatoModel.findById(id);
+}
+
+Contato.buscaContatos = async function() {
+  return ContatoModel.find().sort({ criadoEm: 1 });
+}
+
+Contato.delete = async function(id) {
+  if(typeof id !== 'string') return;
+  return ContatoModel.findByIdAndDelete(id);
+}
+
+
 module.exports = Contato;
